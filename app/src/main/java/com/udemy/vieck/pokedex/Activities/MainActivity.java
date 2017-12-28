@@ -1,7 +1,9 @@
-package com.udemy.vieck.pokedex;
+package com.udemy.vieck.pokedex.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.udemy.vieck.pokedex.R;
 
 public class MainActivity extends AppCompatActivity {
 
