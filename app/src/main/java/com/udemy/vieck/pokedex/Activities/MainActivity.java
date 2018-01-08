@@ -3,6 +3,7 @@ package com.udemy.vieck.pokedex.Activities;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.udemy.vieck.pokedex.Models.Pokemon;
 import com.udemy.vieck.pokedex.Models.PokemonResource;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         PokedexAPIConverter.getAPIInstance().getAllPokemon(20,0).enqueue(new Callback<PokemonResource>() {
             @Override
             public void onResponse(Call<PokemonResource> call, Response<PokemonResource> response) {
+                Toast.makeText(getApplicationContext(), response.body().count + " pokemon. You grabbed " + response.body().results.size(), Toast.LENGTH_LONG).show();
                 for (Pokemon pokemon : response.body().results) {
                     Log.d(TAG, pokemon.name);
                 }
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<PokemonResource> call, Throwable t) {
                 Log.d(TAG, t.getMessage());
+                Toast.makeText(getApplicationContext(), "Issue getting results " + t.getMessage(), Toast.LENGTH_LONG);
             }
         });
     }
