@@ -7,11 +7,9 @@ import android.widget.Toast;
 
 import com.udemy.vieck.pokedex.Models.Pokemon;
 import com.udemy.vieck.pokedex.Models.PokemonResource;
+import com.udemy.vieck.pokedex.Models.PokemonResources;
 import com.udemy.vieck.pokedex.R;
-import com.udemy.vieck.pokedex.Retrofit.PokedexAPI;
 import com.udemy.vieck.pokedex.Retrofit.PokedexAPIConverter;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,19 +27,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getPokemon() {
-        PokedexAPIConverter.getAPIInstance().getAllPokemon(20,0).enqueue(new Callback<PokemonResource>() {
+        PokedexAPIConverter.getAPIInstance().getAllPokemon(5,0).enqueue(new Callback<PokemonResources>() {
             @Override
-            public void onResponse(Call<PokemonResource> call, Response<PokemonResource> response) {
+            public void onResponse(Call<PokemonResources> call, Response<PokemonResources> response) {
                 Toast.makeText(getApplicationContext(), response.body().count + " pokemon. You grabbed " + response.body().results.size(), Toast.LENGTH_LONG).show();
-                for (Pokemon pokemon : response.body().results) {
+                for (PokemonResource pokemon : response.body().results) {
                     Log.d(TAG, pokemon.name);
                 }
             }
 
             @Override
-            public void onFailure(Call<PokemonResource> call, Throwable t) {
+            public void onFailure(Call<PokemonResources> call, Throwable t) {
                 Log.d(TAG, t.getMessage());
-                Toast.makeText(getApplicationContext(), "Issue getting results " + t.getMessage(), Toast.LENGTH_LONG);
+                Toast.makeText(getApplicationContext(), "Issue getting results " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
