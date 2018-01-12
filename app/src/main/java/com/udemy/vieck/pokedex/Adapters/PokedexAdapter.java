@@ -16,15 +16,17 @@ import java.util.List;
 
 public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokedexViewHolder> {
 
+    private Context context;
     private List<PokemonResource> pokemonResources;
 
-    public PokedexAdapter(List<PokemonResource> pokemonResources) {
+    public PokedexAdapter(Context context, List<PokemonResource> pokemonResources) {
+        this.context = context;
         this.pokemonResources = pokemonResources;
     }
 
     @Override
     public PokedexViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_pokedex, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.card_pokedex, parent, false);
         return new PokedexViewHolder(view);
     }
 
