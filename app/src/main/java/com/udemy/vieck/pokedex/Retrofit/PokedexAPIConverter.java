@@ -8,6 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class PokedexAPIConverter {
     private static PokedexAPI pokedexAPI;
     private static String baseURL = "https://pokeapi.co/api/v2/";
+    public static String spriteURL = "http://pokeapi.co/media/sprites/pokemon/";
 
     public static PokedexAPI getAPIInstance() {
         if (pokedexAPI == null) {
