@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.udemy.vieck.pokedex.Models.PokemonResource;
 import com.udemy.vieck.pokedex.R;
 
@@ -33,6 +34,9 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokedexV
     @Override
     public void onBindViewHolder(PokedexViewHolder holder, int position) {
         PokemonResource pokemonResource = pokemonResources.get(position);
+
+        Picasso.with(context).load(pokemonResource.spriteURL).into(holder.pokemonImageView);
+
         holder.pokemonNameText.setText(pokemonResource.name);
     }
 
