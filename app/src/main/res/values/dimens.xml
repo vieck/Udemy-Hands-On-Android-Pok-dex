@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="pokedex_card_height">75dp</dimen>
+    <dimen name="pokedex_card_height">100dp</dimen>
+    <dimen name="pokedex_card_imageview_size">64dp</dimen>
 </resources>

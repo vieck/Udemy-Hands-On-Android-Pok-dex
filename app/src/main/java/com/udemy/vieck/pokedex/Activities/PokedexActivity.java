@@ -8,7 +8,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.udemy.vieck.pokedex.Adapters.PokedexAdapter;
-import com.udemy.vieck.pokedex.Models.Pokemon;
 import com.udemy.vieck.pokedex.Models.PokemonResource;
 import com.udemy.vieck.pokedex.Models.PokemonResources;
 import com.udemy.vieck.pokedex.R;
@@ -44,6 +43,12 @@ public class PokedexActivity extends AppCompatActivity {
             public void onResponse(Call<PokemonResources> call, Response<PokemonResources> response) {
                 if (response.body() != null) {
                     Toast.makeText(getApplicationContext(), response.body().count + " pokemon. You grabbed " + response.body().results.size(), Toast.LENGTH_LONG).show();
+
+                    for (PokemonResource pokemonResource : response.body().results) {
+                        pokemonResource.pokedexNumber = Integer.parseInt(pokemonResource.url.substring(pokemonResource.url.lastIndexOf('/')-1,pokemonResource.url.lastIndexOf('/')));
+                        pokemonResource.spriteURL = PokedexAPIConverter.spriteURL +  pokemonResource.pokedexNumber + ".png";
+                    }
+
                     createAdapter(response.body().results);
                 } else {
                     Log.e(TAG, "Response body null");
