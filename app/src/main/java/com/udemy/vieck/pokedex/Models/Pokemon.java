@@ -8,6 +8,7 @@ public class Pokemon {
    public boolean is_default;
    public int order;
    public int weight;
+   public PokemonSprite sprites;
 
    public class PokemonSprite {
       public String front_default;
