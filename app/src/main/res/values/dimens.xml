@@ -2,4 +2,5 @@
 <resources>
     <dimen name="pokedex_card_height">100dp</dimen>
     <dimen name="pokedex_card_imageview_size">64dp</dimen>
+    <dimen name="pokemon_imageview_size">64dp</dimen>
 </resources>

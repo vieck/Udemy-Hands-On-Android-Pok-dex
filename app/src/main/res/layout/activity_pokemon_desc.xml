@@ -2,8 +2,42 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.udemy.vieck.pokedex.Activities.PokemonDescActivity">
+
+    <ImageView
+        android:id="@+id/back_default_image"
+        android:layout_width="@dimen/pokemon_imageview_size"
+        android:layout_height="@dimen/pokemon_imageview_size"
+        app:layout_constraintTop_toTopOf="@id/constraint_layout"
+        app:layout_constraintStart_toStartOf="@id/constraint_layout"
+        app:layout_constraintEnd_toStartOf="@id/front_default_image"
+        app:layout_constraintHorizontal_chainStyle="spread"/>
+
+    <ImageView
+        android:id="@+id/front_default_image"
+        android:layout_width="@dimen/pokemon_imageview_size"
+        android:layout_height="@dimen/pokemon_imageview_size"
+        app:layout_constraintTop_toTopOf="@id/constraint_layout"
+        app:layout_constraintStart_toEndOf="@id/back_default_image"
+        app:layout_constraintEnd_toStartOf="@id/back_female_image"/>
+
+    <ImageView
+        android:id="@+id/back_female_image"
+        android:layout_width="@dimen/pokemon_imageview_size"
+        android:layout_height="@dimen/pokemon_imageview_size"
+        app:layout_constraintTop_toTopOf="@id/constraint_layout"
+        app:layout_constraintStart_toEndOf="@id/front_default_image"
+        app:layout_constraintEnd_toStartOf="@id/front_female_image"/>
+
+    <ImageView
+        android:id="@+id/front_female_image"
+        android:layout_width="@dimen/pokemon_imageview_size"
+        android:layout_height="@dimen/pokemon_imageview_size"
+        app:layout_constraintTop_toTopOf="@id/constraint_layout"
+        app:layout_constraintStart_toEndOf="@id/back_female_image"
+        app:layout_constraintEnd_toEndOf="@id/constraint_layout"/>
 
 </android.support.constraint.ConstraintLayout>
