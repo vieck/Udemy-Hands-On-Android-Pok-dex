@@ -44,6 +44,8 @@ public class PokemonDescActivity extends AppCompatActivity {
             public void onResponse(Call<Pokemon> call, Response<Pokemon> response) {
                 if (response.body() != null) {
                     Toast.makeText(getApplicationContext(), "You grabbed " + response.body().name, Toast.LENGTH_LONG).show();
+
+                    createToolbar(response.body());
                     setViews(response.body());
                 } else {
                     Log.e(TAG, "Response body null");
@@ -56,6 +58,11 @@ public class PokemonDescActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Issue getting results " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private void createToolbar(Pokemon pokemon) {
+        setSupportActionBar(binding.toolbar);
+        getSupportActionBar().setTitle(pokemon.name);
     }
 
     private void setViews(Pokemon pokemon) {
