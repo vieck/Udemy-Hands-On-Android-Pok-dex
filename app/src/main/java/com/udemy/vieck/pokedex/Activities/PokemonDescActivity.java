@@ -3,17 +3,22 @@ package com.udemy.vieck.pokedex.Activities;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+import com.udemy.vieck.pokedex.Adapters.AbilitiesAdapter;
 import com.udemy.vieck.pokedex.Models.Pokemon;
+import com.udemy.vieck.pokedex.Models.PokemonAbility;
 import com.udemy.vieck.pokedex.Models.PokemonResource;
 import com.udemy.vieck.pokedex.Models.PokemonResources;
 import com.udemy.vieck.pokedex.R;
 import com.udemy.vieck.pokedex.Retrofit.PokedexAPIConverter;
 import com.udemy.vieck.pokedex.databinding.ActivityPokemonDescBinding;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,6 +31,8 @@ public class PokemonDescActivity extends AppCompatActivity {
     private ActivityPokemonDescBinding binding;
 
     private int pokemonIndex;
+
+    private AbilitiesAdapter abilitiesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +54,7 @@ public class PokemonDescActivity extends AppCompatActivity {
 
                     createToolbar(response.body());
                     setViews(response.body());
+                    setAbilityAdapter(response.body().abilities);
                 } else {
                     Log.e(TAG, "Response body null");
                 }
@@ -75,6 +83,13 @@ public class PokemonDescActivity extends AppCompatActivity {
             binding.frontFemaleImage.setVisibility(View.GONE);
             binding.backFemaleImage.setVisibility(View.GONE);
         }
+    }
 
+    private void setAbilityAdapter(List<PokemonAbility> abilities) {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        abilitiesAdapter = new AbilitiesAdapter(this, abilities);
+
+        binding.recyclerAbility.setLayoutManager(layoutManager);
+        binding.recyclerAbility.setAdapter(abilitiesAdapter);
     }
 }
