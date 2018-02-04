@@ -11,6 +11,7 @@ public class Pokemon {
    public int order;
    public int weight;
    public List<PokemonAbility> abilities;
+   public List<PokemonStat> stats;
    public PokemonSprite sprites;
 
 }

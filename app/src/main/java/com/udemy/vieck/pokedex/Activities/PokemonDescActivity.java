@@ -10,10 +10,12 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.udemy.vieck.pokedex.Adapters.AbilitiesAdapter;
+import com.udemy.vieck.pokedex.Adapters.StatsAdapter;
 import com.udemy.vieck.pokedex.Models.Pokemon;
 import com.udemy.vieck.pokedex.Models.PokemonAbility;
 import com.udemy.vieck.pokedex.Models.PokemonResource;
 import com.udemy.vieck.pokedex.Models.PokemonResources;
+import com.udemy.vieck.pokedex.Models.PokemonStat;
 import com.udemy.vieck.pokedex.R;
 import com.udemy.vieck.pokedex.Retrofit.PokedexAPIConverter;
 import com.udemy.vieck.pokedex.databinding.ActivityPokemonDescBinding;
@@ -33,6 +35,7 @@ public class PokemonDescActivity extends AppCompatActivity {
     private int pokemonIndex;
 
     private AbilitiesAdapter abilitiesAdapter;
+    private StatsAdapter statsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,7 @@ public class PokemonDescActivity extends AppCompatActivity {
                     createToolbar(response.body());
                     setViews(response.body());
                     setAbilityAdapter(response.body().abilities);
+                    setStatAdapter(response.body().stats);
                 } else {
                     Log.e(TAG, "Response body null");
                 }
@@ -91,5 +95,13 @@ public class PokemonDescActivity extends AppCompatActivity {
 
         binding.recyclerAbility.setLayoutManager(layoutManager);
         binding.recyclerAbility.setAdapter(abilitiesAdapter);
+    }
+
+    private void setStatAdapter(List<PokemonStat> stats) {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        statsAdapter = new StatsAdapter(this, stats);
+
+        binding.recyclerStats.setLayoutManager(layoutManager);
+        binding.recyclerStats.setAdapter(statsAdapter);
     }
 }

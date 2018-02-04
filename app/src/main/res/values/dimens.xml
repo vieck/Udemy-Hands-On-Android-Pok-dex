@@ -9,5 +9,5 @@
 
     <dimen name="ability_card_padding">12dp</dimen>
 
-    <dimen name="ability_name_text_size">16sp</dimen>
+    <dimen name="card_text_size">16sp</dimen>
 </resources>
