@@ -1,5 +1,6 @@
 package com.udemy.vieck.pokedex.Retrofit;
 
+import com.udemy.vieck.pokedex.Models.Pokemon;
 import com.udemy.vieck.pokedex.Models.PokemonResources;
 
 import retrofit2.Call;
@@ -12,5 +13,5 @@ public interface PokedexAPI {
     Call<PokemonResources> getAllPokemon(@Query("limit") int limit, @Query("offset") int offset);
 
     @GET("pokemon/{id}")
-    Call<PokemonResources> getPokemonById(@Path("id") int id, @Query("limit") int limit, @Query("offset") int offset);
+    Call<Pokemon> getPokemonById(@Path("id") int id);
 }

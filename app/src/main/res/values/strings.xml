@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Pokedex</string>
+    <string name="ability">Abilities</string>
+    <string name="is_hidden">Is Hidden</string>
+    <string name="effort">effort</string>
+    <string name="stats">Stats</string>
+    <string name="moves">Moves</string>
+    <string name="level_learned_at">level learned at</string>
+    <string name="move_learn_method">move learn method</string>
 </resources>

@@ -2,4 +2,16 @@
 <resources>
     <dimen name="pokedex_card_height">100dp</dimen>
     <dimen name="pokedex_card_imageview_size">64dp</dimen>
+    <dimen name="pokemon_imageview_size">64dp</dimen>
+
+    <dimen name="description_label_margin">12dp</dimen>
+    <dimen name="description_label_size">16sp</dimen>
+
+    <dimen name="card_small_padding">12dp</dimen>
+    <dimen name="card_padding">12dp</dimen>
+    <dimen name="card_margin">12dp</dimen>
+
+    <dimen name="card_text_size">16sp</dimen>
+
+    <dimen name="version_text_size">14sp</dimen>
 </resources>

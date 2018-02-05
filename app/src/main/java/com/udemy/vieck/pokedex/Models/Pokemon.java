@@ -1,5 +1,7 @@
 package com.udemy.vieck.pokedex.Models;
 
+import java.util.List;
+
 public class Pokemon {
    public int id;
    public String name;
@@ -8,4 +10,9 @@ public class Pokemon {
    public boolean is_default;
    public int order;
    public int weight;
+   public List<PokemonAbility> abilities;
+   public List<PokemonStat> stats;
+   public List<PokemonMove> moves;
+   public PokemonSprite sprites;
+
 }

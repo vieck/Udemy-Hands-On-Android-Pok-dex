@@ -1,6 +1,7 @@
 package com.udemy.vieck.pokedex.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.udemy.vieck.pokedex.Activities.PokemonDescActivity;
 import com.udemy.vieck.pokedex.Models.PokemonResource;
 import com.udemy.vieck.pokedex.R;
 
@@ -38,6 +40,8 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokedexV
         Picasso.with(context).load(pokemonResource.spriteURL).into(holder.pokemonImageView);
 
         holder.pokemonNameText.setText(pokemonResource.name);
+
+        holder.pokedexIndex = pokemonResource.pokedexNumber;
     }
 
     @Override
@@ -49,11 +53,22 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokedexV
 
         private ImageView pokemonImageView;
         private TextView pokemonNameText;
+        private int pokedexIndex;
 
         public PokedexViewHolder(View itemView) {
             super(itemView);
             pokemonImageView = (ImageView) itemView.findViewById(R.id.pokemon_image);
             pokemonNameText = (TextView) itemView.findViewById(R.id.pokemon_name);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, PokemonDescActivity.class);
+                    intent.putExtra("pokedexIndex", pokedexIndex);
+                    context.startActivity(intent);
+                }
+            });
         }
+
+
     }
 }
