@@ -115,5 +115,6 @@ public class PokemonDescActivity extends AppCompatActivity {
 
         binding.recyclerMoves.setLayoutManager(layoutManager);
         binding.recyclerMoves.setAdapter(movesAdapter);
+        binding.recyclerMoves.setNestedScrollingEnabled(false);
     }
 }
