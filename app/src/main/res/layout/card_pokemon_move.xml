@@ -14,7 +14,7 @@
             android:id="@+id/move_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/description_label_margin"
+            android:layout_marginBottom="@dimen/description_label_margin"
             android:textSize="@dimen/card_text_size"
             android:textStyle="bold"
             android:textColor="@color/colorAccent"/>
@@ -22,7 +22,9 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_moves_version"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/card_padding"
+            android:paddingEnd="@dimen/card_padding"/>
 
     </LinearLayout>
 

@@ -7,8 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:paddingStart="@dimen/card_padding"
-        android:paddingEnd="@dimen/card_padding"
+        android:padding="@dimen/card_padding"
         android:weightSum="5">
 
         <TextView

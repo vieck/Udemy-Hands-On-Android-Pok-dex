@@ -1,7 +1,6 @@
 package com.udemy.vieck.pokedex.Adapters;
 
 import android.content.Context;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -41,11 +40,6 @@ public class MovesAdapter extends RecyclerView.Adapter<MovesAdapter.MovesViewHol
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         holder.recyclerMoveVersion.setLayoutManager(layoutManager);
-
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(holder.recyclerMoveVersion.getContext(),
-                layoutManager.getOrientation());
-
-        holder.recyclerMoveVersion.addItemDecoration(dividerItemDecoration);
 
         MoveVersionsAdapter adapter = new MoveVersionsAdapter(context, pokemonMove.version_group_details);
         holder.recyclerMoveVersion.setAdapter(adapter);

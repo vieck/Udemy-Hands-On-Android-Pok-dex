@@ -3,6 +3,7 @@ package com.udemy.vieck.pokedex.Activities;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
@@ -99,6 +100,11 @@ public class PokemonDescActivity extends AppCompatActivity {
 
         binding.recyclerAbility.setLayoutManager(layoutManager);
         binding.recyclerAbility.setAdapter(abilitiesAdapter);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(binding.recyclerAbility.getContext(),
+                layoutManager.getOrientation());
+
+        binding.recyclerAbility.addItemDecoration(dividerItemDecoration);
     }
 
     private void setStatAdapter(List<PokemonStat> stats) {
@@ -107,6 +113,11 @@ public class PokemonDescActivity extends AppCompatActivity {
 
         binding.recyclerStats.setLayoutManager(layoutManager);
         binding.recyclerStats.setAdapter(statsAdapter);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(binding.recyclerStats.getContext(),
+                layoutManager.getOrientation());
+
+        binding.recyclerStats.addItemDecoration(dividerItemDecoration);
     }
 
     private void setMoveAdapter(List<PokemonMove> moves) {
@@ -116,5 +127,10 @@ public class PokemonDescActivity extends AppCompatActivity {
         binding.recyclerMoves.setLayoutManager(layoutManager);
         binding.recyclerMoves.setAdapter(movesAdapter);
         binding.recyclerMoves.setNestedScrollingEnabled(false);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(binding.recyclerMoves.getContext(),
+                layoutManager.getOrientation());
+
+        binding.recyclerMoves.addItemDecoration(dividerItemDecoration);
     }
 }
