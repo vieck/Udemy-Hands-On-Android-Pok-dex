@@ -7,8 +7,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:paddingStart="@dimen/ability_card_padding"
-        android:paddingEnd="@dimen/ability_card_padding">
+        android:paddingStart="@dimen/card_padding"
+        android:paddingEnd="@dimen/card_padding">
 
         <TextView
             android:id="@+id/ability_name"

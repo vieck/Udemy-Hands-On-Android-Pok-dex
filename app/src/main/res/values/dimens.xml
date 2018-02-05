@@ -7,7 +7,11 @@
     <dimen name="description_label_margin">12dp</dimen>
     <dimen name="description_label_size">16sp</dimen>
 
-    <dimen name="ability_card_padding">12dp</dimen>
+    <dimen name="card_small_padding">12dp</dimen>
+    <dimen name="card_padding">12dp</dimen>
+    <dimen name="card_margin">12dp</dimen>
 
     <dimen name="card_text_size">16sp</dimen>
+
+    <dimen name="version_text_size">14sp</dimen>
 </resources>
