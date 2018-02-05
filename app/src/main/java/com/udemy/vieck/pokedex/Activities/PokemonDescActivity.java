@@ -10,9 +10,11 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.udemy.vieck.pokedex.Adapters.AbilitiesAdapter;
+import com.udemy.vieck.pokedex.Adapters.MovesAdapter;
 import com.udemy.vieck.pokedex.Adapters.StatsAdapter;
 import com.udemy.vieck.pokedex.Models.Pokemon;
 import com.udemy.vieck.pokedex.Models.PokemonAbility;
+import com.udemy.vieck.pokedex.Models.PokemonMove;
 import com.udemy.vieck.pokedex.Models.PokemonResource;
 import com.udemy.vieck.pokedex.Models.PokemonResources;
 import com.udemy.vieck.pokedex.Models.PokemonStat;
@@ -36,6 +38,7 @@ public class PokemonDescActivity extends AppCompatActivity {
 
     private AbilitiesAdapter abilitiesAdapter;
     private StatsAdapter statsAdapter;
+    private MovesAdapter movesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,7 @@ public class PokemonDescActivity extends AppCompatActivity {
                     setViews(response.body());
                     setAbilityAdapter(response.body().abilities);
                     setStatAdapter(response.body().stats);
+                    setMoveAdapter(response.body().moves);
                 } else {
                     Log.e(TAG, "Response body null");
                 }
@@ -103,5 +107,13 @@ public class PokemonDescActivity extends AppCompatActivity {
 
         binding.recyclerStats.setLayoutManager(layoutManager);
         binding.recyclerStats.setAdapter(statsAdapter);
+    }
+
+    private void setMoveAdapter(List<PokemonMove> moves) {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        movesAdapter = new MovesAdapter(this, moves);
+
+        binding.recyclerMoves.setLayoutManager(layoutManager);
+        binding.recyclerMoves.setAdapter(movesAdapter);
     }
 }

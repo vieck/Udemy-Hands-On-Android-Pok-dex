@@ -1,6 +1,8 @@
 package com.udemy.vieck.pokedex.Models;
 
+import java.util.List;
+
 public class PokemonMove {
     public NamedAPIResource move;
-    public PokemonMoveVersion version_group_details;
+    public List<PokemonMoveVersion> version_group_details;
 }

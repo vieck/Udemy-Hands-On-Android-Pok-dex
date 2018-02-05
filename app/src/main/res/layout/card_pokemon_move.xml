@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/ability_card_padding"
+        android:paddingEnd="@dimen/ability_card_padding"
+        android:weightSum="5">
+
+        <TextView
+            android:id="@+id/move_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textSize="@dimen/card_text_size"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+            android:id="@+id/learned_at_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="@dimen/card_text_size"
+            android:text="@string/level_learned_at"
+            android:layout_alignBaseline="@id/move_name"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_moves_version"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/move_name" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
