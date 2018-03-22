@@ -1,5 +1,6 @@
 package com.udemy.vieck.pokedex.Activities;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -24,6 +25,8 @@ public class PokedexActivity extends AppCompatActivity {
 
     private static String TAG = "MAIN_ACTIVITY";
 
+    private SwipeRefreshLayout swipeRefreshLayout;
+
     private RecyclerView pokedexRecyclerView;
 
     private PokedexAdapter pokedexAdapter;
@@ -33,8 +36,29 @@ public class PokedexActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pokedex);
         pokedexRecyclerView = findViewById(R.id.recycler_pokedex);
+        swipeRefreshLayout = findViewById(R.id.swipe_refresh_layout);
+
         createAdapter(new ArrayList<PokemonResource>());
         getPokemon();
+        swipeRefreshSetup();
+    }
+
+    private void createAdapter(List<PokemonResource> pokemonResources) {
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+        pokedexAdapter = new PokedexAdapter(this, pokemonResources);
+
+        pokedexRecyclerView.setLayoutManager(layoutManager);
+        pokedexRecyclerView.setAdapter(pokedexAdapter);
+    }
+
+    private void swipeRefreshSetup() {
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getPokemon();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 
     private void getPokemon() {
@@ -61,13 +85,5 @@ public class PokedexActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Issue getting results " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
             }
         });
-    }
-
-    private void createAdapter(List<PokemonResource> pokemonResources) {
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
-        pokedexAdapter = new PokedexAdapter(this, pokemonResources);
-
-        pokedexRecyclerView.setLayoutManager(layoutManager);
-        pokedexRecyclerView.setAdapter(pokedexAdapter);
     }
 }
