@@ -68,8 +68,6 @@ public class PokedexActivity extends AppCompatActivity {
         skeletonScreen.show();
     }
 
-
-
     private void updateAdapter(List<PokemonResource> pokemonResources) {
         skeletonScreen.hide();
         pokedexAdapter = new PokedexAdapter(PokedexActivity.this, pokemonResources);
@@ -77,7 +75,7 @@ public class PokedexActivity extends AppCompatActivity {
     }
 
     private void getPokemon() {
-        PokedexAPIConverter.getAPIInstance().getAllPokemon(5,0).enqueue(new Callback<PokemonResources>() {
+        PokedexAPIConverter.getAPIInstance().getAllPokemon(5, 0).enqueue(new Callback<PokemonResources>() {
             @Override
             public void onResponse(Call<PokemonResources> call, Response<PokemonResources> response) {
                 skeletonScreen.hide();
@@ -85,8 +83,8 @@ public class PokedexActivity extends AppCompatActivity {
                     displayPokemonSnackbar(response.body().count + " pokemon. You grabbed " + response.body().results.size());
 
                     for (PokemonResource pokemonResource : response.body().results) {
-                        pokemonResource.pokedexNumber = Integer.parseInt(pokemonResource.url.substring(pokemonResource.url.lastIndexOf('/')-1,pokemonResource.url.lastIndexOf('/')));
-                        pokemonResource.spriteURL = PokedexAPIConverter.spriteURL +  pokemonResource.pokedexNumber + ".png";
+                        pokemonResource.pokedexNumber = Integer.parseInt(pokemonResource.url.substring(pokemonResource.url.lastIndexOf('/') - 1, pokemonResource.url.lastIndexOf('/')));
+                        pokemonResource.spriteURL = PokedexAPIConverter.spriteURL + pokemonResource.pokedexNumber + ".png";
                     }
                     List<PokemonResource> pokemonResources = response.body().results;
                     updateAdapter(pokemonResources);
