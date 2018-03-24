@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.ethanhua.skeleton.Skeleton;
+import com.ethanhua.skeleton.SkeletonScreen;
 import com.squareup.picasso.Picasso;
 import com.udemy.vieck.pokedex.Adapters.AbilitiesAdapter;
 import com.udemy.vieck.pokedex.Adapters.MovesAdapter;
@@ -23,6 +25,7 @@ import com.udemy.vieck.pokedex.R;
 import com.udemy.vieck.pokedex.Retrofit.PokedexAPIConverter;
 import com.udemy.vieck.pokedex.databinding.ActivityPokemonDescBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -41,6 +44,9 @@ public class PokemonDescActivity extends AppCompatActivity {
     private StatsAdapter statsAdapter;
     private MovesAdapter movesAdapter;
 
+    SkeletonScreen abilitiesSkeleton, statsSkeleton, movesSkeleton;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +55,58 @@ public class PokemonDescActivity extends AppCompatActivity {
 
         pokemonIndex = getIntent().getIntExtra("pokedexIndex", 1);
 
+        skeletonScreenSetup();
+
         getPokemon();
+    }
+
+    private void skeletonScreenSetup() {
+        LinearLayoutManager abilityManager = new LinearLayoutManager(this);
+        LinearLayoutManager statsManager = new LinearLayoutManager(this);
+        LinearLayoutManager moveManager = new LinearLayoutManager(this);
+
+        binding.recyclerAbility.setLayoutManager(abilityManager);
+        binding.recyclerStats.setLayoutManager(statsManager);
+        binding.recyclerMoves.setLayoutManager(moveManager);
+
+        abilitySkeletonSetup();
+        statsSkeletonSetup();
+        movesSkeletonSetup();
+
+    }
+
+    private void abilitySkeletonSetup() {
+        abilitiesAdapter = new AbilitiesAdapter(this, new ArrayList<PokemonAbility>());
+
+        abilitiesSkeleton = Skeleton.bind(binding.recyclerAbility)
+                .adapter(abilitiesAdapter)
+                .shimmer(true)
+                .angle(20)
+                .frozen(true)
+                .load(R.layout.layout_default_item_skeleton)
+                .show();
+    }
+
+    private void statsSkeletonSetup() {
+        statsAdapter = new StatsAdapter(this, new ArrayList<PokemonStat>());
+
+        statsSkeleton = Skeleton.bind(binding.recyclerStats)
+                .adapter(statsAdapter)
+                .shimmer(false)
+                .frozen(true)
+                .load(R.layout.layout_default_item_skeleton)
+                .show();
+    }
+
+    private void movesSkeletonSetup() {
+        movesAdapter = new MovesAdapter(this, new ArrayList<PokemonMove>());
+
+        movesSkeleton = Skeleton.bind(binding.recyclerMoves)
+                .adapter(movesAdapter)
+                .shimmer(false)
+                .frozen(true)
+                .load(R.layout.layout_default_item_skeleton)
+                .show();
     }
 
     private void getPokemon() {
@@ -64,6 +121,8 @@ public class PokemonDescActivity extends AppCompatActivity {
                     setAbilityAdapter(response.body().abilities);
                     setStatAdapter(response.body().stats);
                     setMoveAdapter(response.body().moves);
+
+                    binding.scrollView.scrollTo(0, 0 ); // Skeleton view causes scrollview to lock
                 } else {
                     Log.e(TAG, "Response body null");
                 }
@@ -95,41 +154,33 @@ public class PokemonDescActivity extends AppCompatActivity {
     }
 
     private void setAbilityAdapter(List<PokemonAbility> abilities) {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         abilitiesAdapter = new AbilitiesAdapter(this, abilities);
-
-        binding.recyclerAbility.setLayoutManager(layoutManager);
         binding.recyclerAbility.setAdapter(abilitiesAdapter);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(binding.recyclerAbility.getContext(),
-                layoutManager.getOrientation());
+                LinearLayoutManager.VERTICAL);
 
         binding.recyclerAbility.addItemDecoration(dividerItemDecoration);
     }
 
     private void setStatAdapter(List<PokemonStat> stats) {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         statsAdapter = new StatsAdapter(this, stats);
-
-        binding.recyclerStats.setLayoutManager(layoutManager);
         binding.recyclerStats.setAdapter(statsAdapter);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(binding.recyclerStats.getContext(),
-                layoutManager.getOrientation());
+                LinearLayoutManager.VERTICAL);
 
         binding.recyclerStats.addItemDecoration(dividerItemDecoration);
     }
 
     private void setMoveAdapter(List<PokemonMove> moves) {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         movesAdapter = new MovesAdapter(this, moves);
 
-        binding.recyclerMoves.setLayoutManager(layoutManager);
         binding.recyclerMoves.setAdapter(movesAdapter);
         binding.recyclerMoves.setNestedScrollingEnabled(false);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(binding.recyclerMoves.getContext(),
-                layoutManager.getOrientation());
+                LinearLayoutManager.VERTICAL);
 
         binding.recyclerMoves.addItemDecoration(dividerItemDecoration);
     }
