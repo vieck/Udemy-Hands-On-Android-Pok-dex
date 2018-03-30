@@ -60,7 +60,7 @@ public class PokedexActivity extends AppCompatActivity {
                 .angle(20)
                 .frozen(false)
                 .duration(1200)
-                .load(R.layout.layout_default_item_skeleton)
+                .load(R.layout.card_pokedex_skeleton)
                 .show();
     }
 
