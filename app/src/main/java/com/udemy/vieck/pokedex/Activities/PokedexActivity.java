@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.ethanhua.skeleton.Skeleton;
@@ -98,6 +99,7 @@ public class PokedexActivity extends AppCompatActivity {
             public void onFailure(Call<PokemonResources> call, Throwable t) {
                 Log.d(TAG, t.getMessage());
                 Toast.makeText(getApplicationContext(), "Issue getting results " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                displayRefreshSnackbar();
             }
         });
     }
@@ -119,6 +121,17 @@ public class PokedexActivity extends AppCompatActivity {
 
     private void displayPokemonSnackbar(String message) {
         Snackbar snackbar = Snackbar.make(binding.getRoot(), message, Snackbar.LENGTH_SHORT);
+        snackbar.show();
+    }
+
+    private void displayRefreshSnackbar() {
+        Snackbar snackbar = Snackbar.make(binding.getRoot(), R.string.network_error, Snackbar.LENGTH_INDEFINITE);
+        snackbar.setAction("Refresh", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getPokemon();
+            }
+        });
         snackbar.show();
     }
 }

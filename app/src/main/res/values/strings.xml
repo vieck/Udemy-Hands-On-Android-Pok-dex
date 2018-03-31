@@ -7,4 +7,5 @@
     <string name="moves">Moves</string>
     <string name="level_learned_at">level learned at</string>
     <string name="move_learn_method">move learn method</string>
+    <string name="network_error">There was an issue connecting, try again</string>
 </resources>
