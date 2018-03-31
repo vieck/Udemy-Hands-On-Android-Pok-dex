@@ -7,5 +7,7 @@
     <string name="moves">Moves</string>
     <string name="level_learned_at">level learned at</string>
     <string name="move_learn_method">move learn method</string>
-    <string name="network_error">There was an issue connecting</string>
+    <string name="pokemon_error">There was an issue connecting</string>
+    <string name="pokemon_details_error">There was an issue grabbing pokemon details.</string>
+
 </resources>

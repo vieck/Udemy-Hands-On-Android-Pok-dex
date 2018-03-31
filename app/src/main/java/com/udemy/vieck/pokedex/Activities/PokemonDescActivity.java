@@ -1,6 +1,7 @@
 package com.udemy.vieck.pokedex.Activities;
 
 import android.databinding.DataBindingUtil;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -131,7 +132,7 @@ public class PokemonDescActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Pokemon> call, Throwable t) {
                 Log.d(TAG, t.getMessage());
-                Toast.makeText(getApplicationContext(), "Issue getting results " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                displayNetworkErrorSnackbar();
             }
         });
     }
@@ -183,5 +184,16 @@ public class PokemonDescActivity extends AppCompatActivity {
                 LinearLayoutManager.VERTICAL);
 
         binding.recyclerMoves.addItemDecoration(dividerItemDecoration);
+    }
+
+    private void displayNetworkErrorSnackbar() {
+        Snackbar snackbar = Snackbar.make(binding.getRoot(), R.string.pokemon_details_error, Snackbar.LENGTH_INDEFINITE);
+        snackbar.setAction("Refresh", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getPokemon();
+            }
+        });
+        snackbar.show();
     }
 }

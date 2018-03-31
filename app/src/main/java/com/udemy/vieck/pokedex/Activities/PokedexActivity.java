@@ -125,7 +125,7 @@ public class PokedexActivity extends AppCompatActivity {
     }
 
     private void displayRefreshSnackbar() {
-        Snackbar snackbar = Snackbar.make(binding.getRoot(), R.string.network_error, Snackbar.LENGTH_INDEFINITE);
+        Snackbar snackbar = Snackbar.make(binding.getRoot(), R.string.pokemon_error, Snackbar.LENGTH_INDEFINITE);
         snackbar.setAction("Refresh", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
