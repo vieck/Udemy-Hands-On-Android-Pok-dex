@@ -40,6 +40,7 @@ public class PokemonDescActivity extends AppCompatActivity {
     private ActivityPokemonDescBinding binding;
 
     private int pokemonIndex;
+    private String pokemonName;
 
     private AbilitiesAdapter abilitiesAdapter;
     private StatsAdapter statsAdapter;
@@ -56,9 +57,16 @@ public class PokemonDescActivity extends AppCompatActivity {
 
         pokemonIndex = getIntent().getIntExtra("pokedexIndex", 1);
 
+        toolbarSetup();
+
         skeletonScreenSetup();
 
         getPokemon();
+    }
+
+    private void toolbarSetup() {
+        pokemonName = getIntent().getStringExtra("pokedexName");
+        binding.toolbar.setTitle(pokemonName);
     }
 
     private void skeletonScreenSetup() {
