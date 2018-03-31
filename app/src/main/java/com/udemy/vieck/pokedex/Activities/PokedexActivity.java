@@ -99,6 +99,7 @@ public class PokedexActivity extends AppCompatActivity {
             public void onFailure(Call<PokemonResources> call, Throwable t) {
                 Log.d(TAG, t.getMessage());
                 Toast.makeText(getApplicationContext(), "Issue getting results " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                displayEmptyStateView();
                 displayRefreshSnackbar();
             }
         });
@@ -133,5 +134,17 @@ public class PokedexActivity extends AppCompatActivity {
             }
         });
         snackbar.show();
+    }
+
+    private void displayEmptyStateView() {
+        binding.swipeRefreshLayout.setVisibility(View.GONE);
+        binding.recyclerPokedex.setVisibility(View.GONE);
+        binding.emptyStateContainer.setVisibility(View.VISIBLE);
+    }
+
+    private void hideEmptyStateView() {
+        binding.swipeRefreshLayout.setVisibility(View.VISIBLE);
+        binding.recyclerPokedex.setVisibility(View.VISIBLE);
+        binding.emptyStateContainer.setVisibility(View.GONE);
     }
 }
