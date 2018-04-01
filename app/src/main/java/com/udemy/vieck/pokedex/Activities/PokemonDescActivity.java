@@ -67,6 +67,8 @@ public class PokemonDescActivity extends AppCompatActivity {
     private void toolbarSetup() {
         pokemonName = getIntent().getStringExtra("pokedexName");
         binding.toolbar.setTitle(pokemonName);
+        setSupportActionBar(binding.toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void skeletonScreenSetup() {
@@ -131,7 +133,7 @@ public class PokemonDescActivity extends AppCompatActivity {
                     setStatAdapter(response.body().stats);
                     setMoveAdapter(response.body().moves);
 
-                    binding.scrollView.scrollTo(0, 0 ); // Skeleton view causes scrollview to lock
+//                    binding.scrollView.scrollTo(0, 0 ); // Skeleton view causes scrollview to lock
                 } else {
                     Log.e(TAG, "Response body null");
                 }
