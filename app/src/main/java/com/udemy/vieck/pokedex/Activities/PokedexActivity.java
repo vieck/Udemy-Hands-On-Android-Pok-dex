@@ -65,12 +65,9 @@ public class PokedexActivity extends AppCompatActivity {
                 .show();
     }
 
-    private void showSkeletonScreen() {
-        skeletonScreen.show();
-    }
-
     private void updateAdapter(List<PokemonResource> pokemonResources) {
-        skeletonScreen.hide();
+        hideEmptyStateView();
+        hideSkeletonScreen();
         pokedexAdapter = new PokedexAdapter(PokedexActivity.this, pokemonResources);
         binding.recyclerPokedex.setAdapter(pokedexAdapter);
     }
@@ -98,7 +95,6 @@ public class PokedexActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<PokemonResources> call, Throwable t) {
                 Log.d(TAG, t.getMessage());
-                Toast.makeText(getApplicationContext(), "Issue getting results " + t.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                 displayEmptyStateView();
                 displayRefreshSnackbar();
             }
@@ -118,6 +114,14 @@ public class PokedexActivity extends AppCompatActivity {
 
     private void stopSwipeRefresh() {
         binding.swipeRefreshLayout.setRefreshing(false);
+    }
+
+    private void showSkeletonScreen() {
+        skeletonScreen.show();
+    }
+
+    private void hideSkeletonScreen() {
+        skeletonScreen.hide();
     }
 
     private void displayPokemonSnackbar(String message) {
