@@ -42,6 +42,9 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokedexV
         holder.pokemonNameText.setText(pokemonResource.name);
 
         holder.pokedexIndex = pokemonResource.pokedexNumber;
+
+        holder.pokedexName = pokemonResource.name;
+
     }
 
     @Override
@@ -54,6 +57,7 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokedexV
         private ImageView pokemonImageView;
         private TextView pokemonNameText;
         private int pokedexIndex;
+        private String pokedexName;
 
         public PokedexViewHolder(View itemView) {
             super(itemView);
@@ -64,6 +68,7 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokedexV
                 public void onClick(View view) {
                     Intent intent = new Intent(context, PokemonDescActivity.class);
                     intent.putExtra("pokedexIndex", pokedexIndex);
+                    intent.putExtra("pokedexName", pokedexName);
                     context.startActivity(intent);
                 }
             });
